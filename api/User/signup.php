@@ -13,7 +13,7 @@ $user = new User($db);
  
 // set user property values
 $user->username = $_POST['username'];
-$user->password = base64_encode($_POST['password']);
+$user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 $user->created = date('Y-m-d H:i:s');
  
 // create the user
