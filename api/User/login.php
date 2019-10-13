@@ -10,6 +10,12 @@ $db = $database->getConnection();
 // prepare user object
 $user = new User($db);
 // set ID property of user to be edited
+if (isset($_GET['username'])) {
+    $user->username = $_GET['username'];
+}
+if (isset($_GET['password'])) {
+    $user->password = password_verify($_GET['password']);
+}
 $user->username = isset($_GET['username']) ? $_GET['username'] : die();
 $user->password = base64_encode(isset($_GET['password']) ? $_GET['password'] : die());
 // read the details of user to be edited
